@@ -1,32 +1,25 @@
 package com.isaacbeguedevs.recetasxidas.pantallas
 
-import android.annotation.SuppressLint
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.isaacbeguedevs.recetasxidas.R
+import com.isaacbeguedevs.recetasxidas.navigation.Screen
 
-@Preview
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+
 @Composable
-fun LoginScreen() {
-    val emailValue = remember { mutableStateOf("") }
-    val passwordValue = remember { mutableStateOf("") }
-    val passwordVisible = remember { mutableStateOf("") }
+fun BarraSuperior(navController: NavController){
     
-    Scaffold(
-        backgroundColor = MaterialTheme.colors.background
-    ) {
-        /*topBar*/
+    TopAppBar(){
         Row(
             modifier = Modifier
                 .background(color = MaterialTheme.colors.primary)
@@ -37,6 +30,13 @@ fun LoginScreen() {
                 painter = painterResource(id = R.drawable.isologo),
                 contentDescription = "logo RecetasXidas",
                 Modifier.height(60.dp)
+                    .clickable { navController.navigate(Screen.PantallaPrincipal.route) {
+                        if(!navController.equals(Screen.PantallaPrincipal.route)) {
+                            popUpTo(Screen.PantallaPrincipal.route){
+                                inclusive = true
+                            }
+                        }
+                    } }
             )
             Image(
                 painter = painterResource(id = R.drawable.baseline_menu_24),
@@ -44,8 +44,10 @@ fun LoginScreen() {
                 modifier = Modifier
                     .height(60.dp)
                     .padding(horizontal = 15.dp)
+                    .clickable { }
             )
         }
     }
 
 }
+

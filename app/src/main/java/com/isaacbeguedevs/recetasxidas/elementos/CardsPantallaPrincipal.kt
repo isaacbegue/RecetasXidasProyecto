@@ -15,17 +15,31 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.isaacbeguedevs.recetasxidas.navigation.RutasPantallas
 
 @Composable
-fun RecetaEnPantallaPrincial(
+fun CardsPantallaPrincipal(
     idImage: Int,
     imageDescription: String,
     tituloReceta: String,
+    idReceta: Int,
+    varGlobales: MutableMap<String, Any>,
     navController: NavController
 ) {
+    val pantallaActual: String = navController.currentBackStackEntry?.destination?.route!!
+
     Column(
         modifier = Modifier.fillMaxWidth()
-            .clickable {  },
+            .clickable {
+                varGlobales["idReceta"] = idReceta
+                navController.navigate(RutasPantallas.PantallaReceta.route) {
+                    if(pantallaActual != RutasPantallas.PantallaReceta.route) {
+                        popUpTo(pantallaActual){
+                            inclusive = true
+                        }
+                    }
+                }
+            },
         horizontalAlignment = Alignment.CenterHorizontally
     )  {
         Card(modifier = Modifier

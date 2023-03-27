@@ -7,32 +7,36 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.core.app.NotificationCompat
 import com.isaacbeguedevs.recetasxidas.base_de_datos.AppDatabase
-import com.isaacbeguedevs.recetasxidas.base_de_datos.User
-import com.isaacbeguedevs.recetasxidas.navigation.Navigation
+import com.isaacbeguedevs.recetasxidas.navigation.Navegacion
 import com.isaacbeguedevs.recetasxidas.ui.theme.RecetasXidasTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        deleteDatabase("recetasxidas-database")
+        val varGlobales: MutableMap<String, Any> = mutableMapOf(
+            "idReceta" to 0
+        )
         setContent {
             RecetasXidasTheme {
-                Surface(color = MaterialTheme.colors.background){
-                    Navigation()
+                Surface(color = MaterialTheme.colors.background) {
+                    Navegacion(applicationContext, varGlobales) {}
                 }
             }
         }
 
+        insertarDatos()
 
         // Create a notification channel if needed (for Android 8.0 or higher)
         createNotificationChannel()
         // Show a simple notification when the app is opened
         showNotification()
     }
-
-
 
 
     /*notificaciones*/
@@ -65,19 +69,9 @@ class MainActivity : ComponentActivity() {
         notificationManager.notify(1, builder.build())
     }
 
-//        /*inserción de datos*/
-//        private fun insertarDatos() {
-//            val db = AppDatabase.getInstance(applicationContext)
-//            val users = listOf(
-//                User(0, "Juan", "juan@gmail.com"),
-//                User(0, "Ana", "ana@gmail.com"),
-//                User(0, "Pedro", "pedro@gmail.com"),
-//                User(0, "Laura", "laura@gmail.com"),
-//                User(0, "Carlos", "carlos@gmail.com"),
-//                User(0, "Sofía", "sofia@gmail.com")
-//            )
-//
-//            db.userDao.insertUsers(users)
-//        }
+    /*inserción de datos*/
+    private fun insertarDatos() {
+        val db = AppDatabase.getInstance(applicationContext)
+    }
 
 }

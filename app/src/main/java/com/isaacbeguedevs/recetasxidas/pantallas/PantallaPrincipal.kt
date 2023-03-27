@@ -1,9 +1,14 @@
+@file:Suppress("UNUSED_ANONYMOUS_PARAMETER")
+
 package com.isaacbeguedevs.recetasxidas.pantallas
 
-import com.isaacbeguedevs.recetasxidas.R
+import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -14,39 +19,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.isaacbeguedevs.recetasxidas.elementos.RecetaEnPantallaPrincial
-import android.os.Build
-import androidx.annotation.RequiresApi
-import androidx.compose.foundation.lazy.items
-import androidx.compose.ui.platform.LocalContext
 import com.isaacbeguedevs.recetasxidas.base_de_datos.AppDatabase
-import com.isaacbeguedevs.recetasxidas.base_de_datos.User
+import com.isaacbeguedevs.recetasxidas.base_de_datos.Receta
+import com.isaacbeguedevs.recetasxidas.elementos.CardsPantallaPrincipal
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun PantallaPrincipal(navController: NavController) {
-    /*consulta a la base de datos*/
-    UserList(navController)
-
+fun PantallaPrincipal(navController: NavController, context: Context, varGlobales: MutableMap<String, Any>) {
+    RecetasCards(navController, context, varGlobales)
 }
 
-// Crear un componente composable para mostrar los datos de un usuario
-@Composable
-fun UserItem(user: User) {
-    // Puedes usar otros componentes composable como Text, Image, etc. para diseñar el aspecto del usuario
-    Text(text = "${user.name} - ${user.email}")
-}
+
 
 // Crear un componente composable para listar los usuarios como componentes composable
 @Composable
-fun UserList(navController: NavController) {
-    // Get an instance of the database and the DAO
-    val db = AppDatabase.getInstance(LocalContext.current)
-    val userDao = db.userDao
+fun RecetasCards(navController: NavController, context: Context, varGlobales: MutableMap<String, Any>) {
 
-    // Definir una lista de usuarios
-    val users: List<User> = userDao.getAllUsers()
     // Usar un LazyColumn para crear una lista vertical de elementos perezosos
     LazyColumn(
         modifier = Modifier
@@ -68,32 +57,25 @@ fun UserList(navController: NavController) {
                         .padding(20.dp)
                 )
             }
-
-            /*Acá se debe consultar a la base de datos*/
-
-            /*espagueti a la carbonara*/
-            RecetaEnPantallaPrincial(idImage = R.drawable.espagueti_a_la_carbonara,
-                imageDescription = "espagueti a la carbonara",
-                tituloReceta = "Espagueti a la carbonara",
-                navController = navController
-            )
-
-            /*pollo al horno*/
-            RecetaEnPantallaPrincial(idImage = R.drawable.pollo_al_horno_con_patatas_y_cebolla,
-                imageDescription = "pollo al horno",
-                tituloReceta = "Pollo al horno con patatas y cebolla",
-                navController = navController
-            )
-            /*tortilla de patatas rellena de jamón y queso*/
-            RecetaEnPantallaPrincial(idImage = R.drawable.tortilla_de_patatas_rellena_de_jamon_y_queso,
-                imageDescription = "tortilla de patatas",
-                tituloReceta = "Tortilla de patatas con jamón y queso",
-                navController = navController
-            )
         }
-        // Usar el método items() para iterar sobre la lista de usuarios y mostrar cada uno en un UserItem
-        items(users) { user ->
-            UserItem(user)
+
+        /*Acá se debe consultar a la base de datos*/
+        val db = AppDatabase.getInstance(context)
+        val listadoRecetas: List<Receta> = db.recetaDao.getAll()
+//        Text(db.userDao.getUserById(1)?.user_name ?: "sin nombre")
+//        Text(text = db.recetaDao.getRecetaById(1)?.titulo ?: "no hay")
+
+        items(listadoRecetas) {fila ->
+            CardsPantallaPrincipal(
+                idImage = fila.ruta_imagen,
+                imageDescription = fila.titulo,
+                tituloReceta = fila.titulo,
+                idReceta = fila.id,
+                varGlobales = varGlobales,
+                navController = navController
+            )
         }
     }
+
 }
+

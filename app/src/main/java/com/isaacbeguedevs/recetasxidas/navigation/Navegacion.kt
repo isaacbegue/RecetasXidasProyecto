@@ -17,7 +17,7 @@ import com.isaacbeguedevs.recetasxidas.pantallas.PantallaTipoDeCambio
 
 @SuppressLint("NewApi")
 @Composable
-fun Navegacion(context: Context, varGlobales: MutableMap<String, Any>, function: () -> Unit) {
+fun Navegacion(context: Context, varGlobales: MutableMap<String, Any>) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -34,12 +34,12 @@ fun Navegacion(context: Context, varGlobales: MutableMap<String, Any>, function:
             )
         }
         composable(RutasPantallas.PantallaAutores.route){
-            PantallasConLayout({ PantallaAutores(navController = navController) },
+            PantallasConLayout({ PantallaAutores() },
                 navController
             )
         }
         composable(RutasPantallas.PantallaTipoDeCambio.route){
-            PantallasConLayout({ PantallaTipoDeCambio(navController = navController) },
+            PantallasConLayout({ PantallaTipoDeCambio() },
                 navController
             )
         }

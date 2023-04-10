@@ -45,7 +45,7 @@ fun RecetasCards(navController: NavController, context: Context, varGlobales: Mu
         /*lazy column irá cargando los elementos conforme se vayan cargando
         * pero necesita trabajar con items*/
         item {
-            Column() {
+            Column {
                 Text(
                     text = "Recetas de hoy",
                     fontSize = 28.sp,
@@ -56,6 +56,7 @@ fun RecetasCards(navController: NavController, context: Context, varGlobales: Mu
                         .fillMaxWidth()
                         .padding(20.dp)
                 )
+
             }
         }
 

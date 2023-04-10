@@ -7,19 +7,16 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import com.isaacbeguedevs.recetasxidas.navigation.RutasPantallas
 import okhttp3.*
 import okio.IOException
 import org.json.JSONObject
 
-
 @Composable
-fun PantallaTipoDeCambio(navController: NavController) {
+fun PantallaTipoDeCambio() {
 
-    val pantallaActual = navController.currentBackStackEntry?.destination?.route!!
-    val rutaPantallaTC = RutasPantallas.PantallaTipoDeCambio.route
+//    val rutaPantallaTC = RutasPantallas.PantallaTipoDeCambio.route
 
     val token = "b4d4412ec8e207c314c74e8d39a841c9615ffa236672115fc41b29cf3a741d26"
     var botonTCPulsado by remember { mutableStateOf(false) }
@@ -55,19 +52,18 @@ fun PantallaTipoDeCambio(navController: NavController) {
         })
     }
 
-
-
     Column(modifier = Modifier.padding(20.dp)) {
         Button(modifier = Modifier.fillMaxWidth(), onClick = { botonTCPulsado = true }) {
             Text("Consultar Tipo de Cambio")
         }
 
         if (botonTCPulsado) {
-            Text(text = resultadoConsulta, modifier = Modifier.padding(vertical = 20.dp))
+            Text(
+                text = resultadoConsulta,
+                modifier = Modifier
+                    .padding(vertical = 20.dp)
+                    .testTag("resultado consulta")
+            )
         }
-
-
     }
 }
-
-

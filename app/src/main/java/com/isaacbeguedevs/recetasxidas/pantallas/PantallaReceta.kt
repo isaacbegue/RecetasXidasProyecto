@@ -1,15 +1,19 @@
 package com.isaacbeguedevs.recetasxidas.pantallas
 
 import android.content.Context
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -37,6 +41,12 @@ fun PantallaReceta(
     val tituloReceta: String = receta?.titulo ?: ""
     val contenidoReceta: String = receta?.texto_receta?:""
 
+    var size by remember { mutableStateOf(400.dp) }
+    val sizeAnimation by animateDpAsState(
+        targetValue = if (size == 400.dp) 150.dp else 400.dp,
+        animationSpec = tween(durationMillis = 1000)
+    )
+
     LazyColumn(
         modifier = Modifier
             .background(color = MaterialTheme.colors.background)
@@ -61,7 +71,9 @@ fun PantallaReceta(
                 contentDescription = imageDescription,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .size(sizeAnimation)
                     .padding(15.dp)
+                    .clickable { size = if (size == 400.dp) 150.dp else 400.dp }
             )
 
             Text(text = contenidoReceta, modifier = Modifier.padding(20.dp))

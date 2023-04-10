@@ -10,7 +10,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.core.app.NotificationCompat
-import com.isaacbeguedevs.recetasxidas.base_de_datos.AppDatabase
 import com.isaacbeguedevs.recetasxidas.navigation.Navegacion
 import com.isaacbeguedevs.recetasxidas.ui.theme.RecetasXidasTheme
 
@@ -25,12 +24,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             RecetasXidasTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    Navegacion(applicationContext, varGlobales) {}
+                    Navegacion(applicationContext, varGlobales)
                 }
             }
         }
 
-        insertarDatos()
+//        insertarDatos()
 
         // Create a notification channel if needed (for Android 8.0 or higher)
         createNotificationChannel()
@@ -70,8 +69,8 @@ class MainActivity : ComponentActivity() {
     }
 
     /*inserción de datos*/
-    private fun insertarDatos() {
-        val db = AppDatabase.getInstance(applicationContext)
-    }
+//    private fun insertarDatos() {
+//        val db = AppDatabase.getInstance(applicationContext)
+//    }
 
 }

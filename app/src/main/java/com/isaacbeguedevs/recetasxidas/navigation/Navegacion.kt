@@ -11,8 +11,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.isaacbeguedevs.recetasxidas.layouts.BarraSuperior
 import com.isaacbeguedevs.recetasxidas.pantallas.PantallaAutores
+import com.isaacbeguedevs.recetasxidas.pantallas.PantallaInicioSesion
+import com.isaacbeguedevs.recetasxidas.pantallas.PantallaMapa
 import com.isaacbeguedevs.recetasxidas.pantallas.PantallaPrincipal
 import com.isaacbeguedevs.recetasxidas.pantallas.PantallaReceta
+import com.isaacbeguedevs.recetasxidas.pantallas.PantallaRegistrarse
 import com.isaacbeguedevs.recetasxidas.pantallas.PantallaTipoDeCambio
 
 @SuppressLint("NewApi")
@@ -43,6 +46,21 @@ fun Navegacion(context: Context, varGlobales: MutableMap<String, Any>) {
                 navController
             )
         }
+        composable(RutasPantallas.PantallaMapa.route){
+            PantallasConLayout({ PantallaMapa() },
+                navController
+            )
+        }
+        composable(RutasPantallas.PantallaInicioSesion.route){
+            PantallasConLayout({ PantallaInicioSesion() },
+                navController
+            )
+        }
+        composable(RutasPantallas.PantallaRegistrarse.route){
+            PantallasConLayout({ PantallaRegistrarse() },
+                navController
+            )
+        }
     }
 }
 
@@ -61,5 +79,8 @@ enum class RutasPantallas(val route: String) {
     PantallaPrincipal("pantalla_principal"),
     PantallaReceta("pantalla_receta"),
     PantallaAutores("pantalla_autores"),
-    PantallaTipoDeCambio("pantalla_tipo_de_cambio")
+    PantallaTipoDeCambio("pantalla_tipo_de_cambio"),
+    PantallaMapa("pantalla_mapa"),
+    PantallaInicioSesion("pantalla_inicio_sesion"),
+    PantallaRegistrarse("pantalla_registrarse")
 }

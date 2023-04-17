@@ -1,5 +1,3 @@
-@file:Suppress("UNUSED_ANONYMOUS_PARAMETER")
-
 package com.isaacbeguedevs.recetasxidas.pantallas
 
 import android.content.Context
@@ -29,8 +27,6 @@ import com.isaacbeguedevs.recetasxidas.elementos.CardsPantallaPrincipal
 fun PantallaPrincipal(navController: NavController, context: Context, varGlobales: MutableMap<String, Any>) {
     RecetasCards(navController, context, varGlobales)
 }
-
-
 
 // Crear un componente composable para listar los usuarios como componentes composable
 @Composable
@@ -63,8 +59,6 @@ fun RecetasCards(navController: NavController, context: Context, varGlobales: Mu
         /*Acá se debe consultar a la base de datos*/
         val db = AppDatabase.getInstance(context)
         val listadoRecetas: List<Receta> = db.recetaDao.getAll()
-//        Text(db.userDao.getUserById(1)?.user_name ?: "sin nombre")
-//        Text(text = db.recetaDao.getRecetaById(1)?.titulo ?: "no hay")
 
         items(listadoRecetas) {fila ->
             CardsPantallaPrincipal(

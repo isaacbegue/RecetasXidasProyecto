@@ -35,7 +35,7 @@ fun PantallaAutores() {
         items(users) { user ->
             Text(
                 text = "${user.user_id}. ${user.user_name} - ${user.user_email}",
-                modifier = Modifier.testTag("${user.user_id}")
+                modifier = Modifier.testTag("${user.user_id}").padding(0.dp,10.dp)
             )
             usuariosCargados++
         }
@@ -43,7 +43,7 @@ fun PantallaAutores() {
         item {
             Text(
                 text = "Usuarios cargados: $usuariosCargados",
-                modifier = Modifier.testTag("usuariosCargados")
+                modifier = Modifier.testTag("usuariosCargados").padding(0.dp, 15.dp)
             )
         }
 

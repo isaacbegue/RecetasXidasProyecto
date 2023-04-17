@@ -4,10 +4,19 @@ package com.isaacbeguedevs.recetasxidas.layouts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.height
-import androidx.compose.material.*
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -75,6 +84,57 @@ fun BarraSuperior(navController: NavController){
                             .clickable {
                                 navController.navigate(RutasPantallas.PantallaTipoDeCambio.route) {
                                     if(pantallaActual != RutasPantallas.PantallaTipoDeCambio.route) {
+                                        popUpTo(pantallaActual){
+                                            inclusive = true
+                                        }
+                                    }
+                                }
+                            }
+                    )
+                }
+                DropdownMenuItem(onClick = {
+                    expanded = false
+                }) {
+                    Text(
+                        text = "Google Maps",
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(RutasPantallas.PantallaMapa.route) {
+                                    if(pantallaActual != RutasPantallas.PantallaMapa.route) {
+                                        popUpTo(pantallaActual){
+                                            inclusive = true
+                                        }
+                                    }
+                                }
+                            }
+                    )
+                }
+                DropdownMenuItem(onClick = {
+                    expanded = false
+                }) {
+                    Text(
+                        text = "Inicio Sesión",
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(RutasPantallas.PantallaInicioSesion.route) {
+                                    if(pantallaActual != RutasPantallas.PantallaInicioSesion.route) {
+                                        popUpTo(pantallaActual){
+                                            inclusive = true
+                                        }
+                                    }
+                                }
+                            }
+                    )
+                }
+                DropdownMenuItem(onClick = {
+                    expanded = false
+                }) {
+                    Text(
+                        text = "Registrarse",
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(RutasPantallas.PantallaRegistrarse.route) {
+                                    if(pantallaActual != RutasPantallas.PantallaRegistrarse.route) {
                                         popUpTo(pantallaActual){
                                             inclusive = true
                                         }

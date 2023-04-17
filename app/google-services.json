@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "46908256235",
+    "project_id": "recetasxidasbdprueba",
+    "storage_bucket": "recetasxidasbdprueba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46908256235:android:3443e04b6416465f7fb3ae",
+        "android_client_info": {
+          "package_name": "com.isaacbeguedevs.recetasxidas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46908256235-o2a27gqut6h8lrt4dh7kq3oljrginogn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzqI-moNIMhoj9hwAr2dXdU7q8DKDOZek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46908256235-o2a27gqut6h8lrt4dh7kq3oljrginogn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

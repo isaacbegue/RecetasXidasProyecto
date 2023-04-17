@@ -12,7 +12,9 @@ import androidx.compose.material.Surface
 import androidx.core.app.NotificationCompat
 import com.isaacbeguedevs.recetasxidas.navigation.Navegacion
 import com.isaacbeguedevs.recetasxidas.ui.theme.RecetasXidasTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,7 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-//        insertarDatos()
+//        insertarDatos(applicationContext)
 
         // Create a notification channel if needed (for Android 8.0 or higher)
         createNotificationChannel()
@@ -67,10 +69,4 @@ class MainActivity : ComponentActivity() {
         // Show the notification with an ID of 1
         notificationManager.notify(1, builder.build())
     }
-
-    /*inserción de datos*/
-//    private fun insertarDatos() {
-//        val db = AppDatabase.getInstance(applicationContext)
-//    }
-
 }
